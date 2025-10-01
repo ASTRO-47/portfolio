@@ -111,13 +111,13 @@ export function Navigation() {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-2xl blur opacity-75 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary to-accent text-white font-bold text-xl shadow-xl transform group-hover:scale-110 transition-transform duration-300">
-                    <span className="relative z-10">I</span>
+                    <span className="relative z-10">A</span>
                     <Sparkles className="absolute inset-0 h-3 w-3 text-white/50 animate-pulse" />
                   </div>
                 </div>
                 <div className="flex flex-col">
                   <span className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                    Imad
+                    Astro
                   </span>
                   <span className="text-xs text-muted-foreground group-hover:text-accent transition-colors duration-300">
                     Frontend Dev

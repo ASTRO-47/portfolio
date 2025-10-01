@@ -61,10 +61,10 @@ export function Hero() {
       <div className="container mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-6 py-20 lg:flex-row lg:gap-24 relative z-10">
         {/* Text Content */}
         <div className={`flex-1 text-center lg:text-left transition-all duration-1000 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-5 py-2 text-sm font-medium text-primary shadow-sm border border-primary/20 backdrop-blur-sm">
+          {/* <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-5 py-2 text-sm font-medium text-primary shadow-sm border border-primary/20 backdrop-blur-sm">
             <Sparkles className="h-4 w-4 animate-bounce-subtle" />
             Welcome to my portfolio
-          </div>
+          </div> */}
 
           <h1 className="mb-4 text-balance text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Hi, I&apos;m{" "}
@@ -116,8 +116,8 @@ export function Hero() {
           {/* Stats */}
           <div className="mt-12 flex flex-wrap justify-center gap-8 lg:justify-start animate-fade-in-up animation-delay-700">
             {[
-              { number: "50+", label: "Projects" },
-              { number: "3+", label: "Years Experience" },
+              { number: "20+", label: "Projects" },
+              { number: "2+", label: "Years Experience" },
               { number: "15+", label: "Technologies" },
             ].map((stat, index) => (
               <div key={stat.label} className="text-center">

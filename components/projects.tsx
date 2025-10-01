@@ -19,47 +19,112 @@ const projects = [
     github: "https://github.com/ASTRO-47",
     demo: "#",
     featured: true,
-    stats: { stars: 42, views: "2.1k" }
+    stats: { stars: 2, views: "207" }
   },
   {
-    title: "Task Management Dashboard",
-    description: "Advanced project management tool with real-time collaboration, Kanban boards, time tracking, and analytics dashboard.",
-    image: "/task-management-dashboard.png",
-    tags: ["React", "Firebase", "Tailwind", "Framer Motion", "TypeScript"],
-    category: "Frontend",
+    title: "Inception",
+    description: "A Docker-based system that deploys a complete web infrastructure with NGINX, WordPress, MariaDB, and Redis. Emphasis on DevOps practices and container orchestration.",
+    image: "/inception.png",
+    tags: ["Docker", "NGINX", "WordPress", "MariaDB", "Redis", "Shell"],
+    category: "DevOps",
     year: "2024",
-    status: "In Progress",
+    status: "Completed",
     github: "https://github.com/ASTRO-47",
     demo: "#",
     featured: true,
-    stats: { stars: 28, views: "1.8k" }
+    stats: { stars: 3, views: "180" }
   },
   {
-    title: "Weather Intelligence Hub",
-    description: "AI-powered weather application with predictive analytics, satellite imagery, and personalized climate insights.",
-    image: "/weather-app-interface.png",
-    tags: ["Next.js", "OpenAI", "Charts.js", "Mapbox", "API"],
-    category: "Full Stack",
+    title: "IRC",
+    description: "An Internet Relay Chat server built from scratch in C++ handling multiple clients with channels, nicknames, private messaging, and operator privileges.",
+    image: "/irc.png",
+    tags: ["C++", "Sockets", "Networking", "Concurrency"],
+    category: "Systems",
     year: "2023",
     status: "Completed",
     github: "https://github.com/ASTRO-47",
     demo: "#",
     featured: false,
-    stats: { stars: 35, views: "3.2k" }
+    stats: { stars: 4, views: "210" }
   },
   {
-    title: "Portfolio Creator Studio",
-    description: "No-code portfolio builder with drag-and-drop interface, theme customization, and one-click deployment.",
-    image: "/portfolio-website-builder.png",
-    tags: ["React", "Node.js", "MongoDB", "Stripe", "AWS"],
-    category: "SaaS",
+    title: "NetPractice",
+    description: "A set of network configuration exercises focusing on understanding IP addresses, subnetting, and routing logic in computer networks.",
+    image: "/netpractice.png",
+    tags: ["Networking", "IP", "Subnetting"],
+    category: "Networks",
     year: "2023",
     status: "Completed",
     github: "https://github.com/ASTRO-47",
     demo: "#",
     featured: false,
-    stats: { stars: 67, views: "4.5k" }
+    stats: { stars: 2, views: "130" }
   },
+  {
+    title: "Cub3D",
+    description: "A 3D game engine inspired by Wolfenstein 3D, built using raycasting. Demonstrates graphics programming, math skills, and low-level C development.",
+    image: "/cub3d.png",
+    tags: ["C", "Raycasting", "Graphics", "MiniLibX"],
+    category: "Graphics",
+    year: "2023",
+    status: "Completed",
+    github: "https://github.com/ASTRO-47",
+    demo: "#",
+    featured: false,
+    stats: { stars: 4, views: "220" }
+  },
+  {
+    title: "Minishell",
+    description: "A simplified shell implementation that mimics bash behavior with built-in commands, piping, redirections, and process management.",
+    image: "/minishell.png",
+    tags: ["C", "System Programming", "Shell"],
+    category: "Systems",
+    year: "2023",
+    status: "Completed",
+    github: "https://github.com/ASTRO-47",
+    demo: "#",
+    featured: true,
+    stats: { stars: 5, views: "340" }
+  },
+  {
+    title: "Book Library",
+    description: "A personal project made while learning web development. A simple app to add and manage book cards with a clean UI and responsive design.",
+    image: "/booklib.png",
+    tags: ["HTML", "CSS", "JavaScript"],
+    category: "Frontend",
+    year: "2022",
+    status: "Completed",
+    github: "https://github.com/ASTRO-47",
+    demo: "#",
+    featured: false,
+    stats: { stars: 1, views: "95" }
+  },
+  {
+    title: "WordPress Logistics Website",
+    description: "Freelance project: A complete WordPress website for a logistics company, including custom themes, responsive UI, and SEO optimization.",
+    image: "/logistics.png",
+    tags: ["WordPress", "PHP", "CSS", "Freelance"],
+    category: "Freelance",
+    year: "2023",
+    status: "Completed",
+    github: "#",
+    demo: "#",
+    featured: true,
+    stats: { stars: 0, views: "150" }
+  },
+  {
+    title: "Twitter Profile Scraper",
+    description: "Freelance tool that scrapes Twitter profiles to extract bios, followers, following, and tweets using Python and API integration.",
+    image: "/twitter.png",
+    tags: ["Python", "API", "Automation", "Freelance"],
+    category: "Freelance",
+    year: "2023",
+    status: "Completed",
+    github: "#",
+    demo: "#",
+    featured: true,
+    stats: { stars: 0, views: "175" }
+  }
 ]
 
 export function Projects() {
