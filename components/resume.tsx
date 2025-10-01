@@ -15,7 +15,7 @@ export function Resume() {
             convenience.
           </p>
           <Button size="lg" className="group" asChild>
-            <a href="#" download>
+            <a href="/resume_final.pdf" download>
               <Download className="mr-2 h-5 w-5 transition-transform group-hover:translate-y-1" />
               Download Resume (PDF)
             </a>
@@ -25,3 +25,6 @@ export function Resume() {
     </section>
   )
 }
+
+
+// className="cursor-pointer group border-2 border-primary/20 bg-transparent backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-primary hover:bg-primary/10"

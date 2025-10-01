@@ -3,7 +3,7 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github, Star, Calendar, Eye } from "lucide-react"
+import { ExternalLink, Github, Star, Calendar, Eye, ChevronDown } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 
@@ -11,12 +11,12 @@ const projects = [
   {
     title: "Ft_transcendence",
     description: "A comprehensive real-time gaming platform featuring multiplayer Pong, chat system, and user management. Built with modern web technologies and WebSocket integration.",
-    image: "/trans.png",
+    image: "/pong.jpg",
     tags: ["Next.js", "TypeScript", "WebSocket", "PostgreSQL", "Docker"],
     category: "Full Stack",
     year: "2024",
-    status: "Completed",
-    github: "https://github.com/ASTRO-47",
+    status: "In Progress",
+    github: "https://github.com/ASTRO-47/ft_transcendence",
     demo: "#",
     featured: true,
     stats: { stars: 2, views: "207" }
@@ -24,12 +24,12 @@ const projects = [
   {
     title: "Inception",
     description: "A Docker-based system that deploys a complete web infrastructure with NGINX, WordPress, MariaDB, and Redis. Emphasis on DevOps practices and container orchestration.",
-    image: "/inception.png",
+    image: "/docker.png",
     tags: ["Docker", "NGINX", "WordPress", "MariaDB", "Redis", "Shell"],
     category: "DevOps",
     year: "2024",
     status: "Completed",
-    github: "https://github.com/ASTRO-47",
+    github: "https://github.com/ASTRO-47/inception",
     demo: "#",
     featured: true,
     stats: { stars: 3, views: "180" }
@@ -37,12 +37,12 @@ const projects = [
   {
     title: "IRC",
     description: "An Internet Relay Chat server built from scratch in C++ handling multiple clients with channels, nicknames, private messaging, and operator privileges.",
-    image: "/irc.png",
+    image: "/irc.webp",
     tags: ["C++", "Sockets", "Networking", "Concurrency"],
     category: "Systems",
     year: "2023",
     status: "Completed",
-    github: "https://github.com/ASTRO-47",
+    github: "https://github.com/ASTRO-47/ft_irc",
     demo: "#",
     featured: false,
     stats: { stars: 4, views: "210" }
@@ -50,12 +50,12 @@ const projects = [
   {
     title: "NetPractice",
     description: "A set of network configuration exercises focusing on understanding IP addresses, subnetting, and routing logic in computer networks.",
-    image: "/netpractice.png",
+    image: "/net-practic.webp",
     tags: ["Networking", "IP", "Subnetting"],
     category: "Networks",
     year: "2023",
     status: "Completed",
-    github: "https://github.com/ASTRO-47",
+    github: "https://github.com/ASTRO-47/NET_PRACTICE",
     demo: "#",
     featured: false,
     stats: { stars: 2, views: "130" }
@@ -63,12 +63,12 @@ const projects = [
   {
     title: "Cub3D",
     description: "A 3D game engine inspired by Wolfenstein 3D, built using raycasting. Demonstrates graphics programming, math skills, and low-level C development.",
-    image: "/cub3d.png",
+    image: "/cub.png",
     tags: ["C", "Raycasting", "Graphics", "MiniLibX"],
     category: "Graphics",
     year: "2023",
     status: "Completed",
-    github: "https://github.com/ASTRO-47",
+    github: "https://github.com/ASTRO-47/cub_3d",
     demo: "#",
     featured: false,
     stats: { stars: 4, views: "220" }
@@ -76,12 +76,12 @@ const projects = [
   {
     title: "Minishell",
     description: "A simplified shell implementation that mimics bash behavior with built-in commands, piping, redirections, and process management.",
-    image: "/minishell.png",
+    image: "/minishell.jpeg",
     tags: ["C", "System Programming", "Shell"],
     category: "Systems",
     year: "2023",
     status: "Completed",
-    github: "https://github.com/ASTRO-47",
+    github: "https://github.com/ASTRO-47/minishell",
     demo: "#",
     featured: true,
     stats: { stars: 5, views: "340" }
@@ -89,12 +89,12 @@ const projects = [
   {
     title: "Book Library",
     description: "A personal project made while learning web development. A simple app to add and manage book cards with a clean UI and responsive design.",
-    image: "/booklib.png",
+    image: "/books-lib.png",
     tags: ["HTML", "CSS", "JavaScript"],
     category: "Frontend",
     year: "2022",
     status: "Completed",
-    github: "https://github.com/ASTRO-47",
+    github: "https://github.com/ASTRO-47/book-lib",
     demo: "#",
     featured: false,
     stats: { stars: 1, views: "95" }
@@ -102,25 +102,25 @@ const projects = [
   {
     title: "WordPress Logistics Website",
     description: "Freelance project: A complete WordPress website for a logistics company, including custom themes, responsive UI, and SEO optimization.",
-    image: "/logistics.png",
+    image: "/logistic.png",
     tags: ["WordPress", "PHP", "CSS", "Freelance"],
     category: "Freelance",
     year: "2023",
     status: "Completed",
-    github: "#",
-    demo: "#",
+    github: "https://github.com/ASTRO-47/logistique-company-website",
+    demo: "https://fb-bslogistique.ca",
     featured: true,
     stats: { stars: 0, views: "150" }
   },
   {
     title: "Twitter Profile Scraper",
     description: "Freelance tool that scrapes Twitter profiles to extract bios, followers, following, and tweets using Python and API integration.",
-    image: "/twitter.png",
+    image: "/twitter_scraper.svg",
     tags: ["Python", "API", "Automation", "Freelance"],
     category: "Freelance",
     year: "2023",
     status: "Completed",
-    github: "#",
+    github: "https://github.com/astro-47/twitter_scraper",
     demo: "#",
     featured: true,
     stats: { stars: 0, views: "175" }
@@ -129,14 +129,23 @@ const projects = [
 
 export function Projects() {
   const [isVisible, setIsVisible] = useState(false)
-  const [filter, setFilter] = useState("All")
+  const [showAll, setShowAll] = useState(false)
   const [hoveredProject, setHoveredProject] = useState<string | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
-  const categories = ["All", "Full Stack", "Frontend", "SaaS"]
-  const filteredProjects = filter === "All" 
-    ? projects 
-    : projects.filter(project => project.category === filter)
+  // Sort projects by power/impact: Featured first, then by year (most recent first)
+  const sortedProjects = [...projects].sort((a, b) => {
+    // First priority: Featured projects come first
+    if (a.featured !== b.featured) {
+      return b.featured ? 1 : -1
+    }
+    // Second priority: Within featured/non-featured groups, sort by year (most recent first)
+    return parseInt(b.year) - parseInt(a.year)
+  })
+
+  // Show first 4 projects initially, then all when expanded
+  const displayedProjects = showAll ? sortedProjects : sortedProjects.slice(0, 4)
+  const hasMoreProjects = sortedProjects.length > 4
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -171,7 +180,7 @@ export function Projects() {
           </div>
           
           <h2 className="mb-4 text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">
-            My <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">Projects</span>
+            Featured <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">Projects</span>
           </h2>
           
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -181,36 +190,20 @@ export function Projects() {
           </div>
           
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A collection of projects showcasing my expertise in modern web development, 
-            from concept to deployment.
+            My most impactful projects showcasing expertise in modern development and innovative solutions.
           </p>
-        </div>
-
-        {/* Filter Tabs */}
-        <div className={`flex flex-wrap justify-center gap-2 mb-12 transition-all duration-700 delay-200 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                filter === category
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                  : "bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
         </div>
 
         {/* Projects Grid */}
         <div className="grid gap-8 lg:grid-cols-2">
-          {filteredProjects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <Card
               key={project.title}
               className={`group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm transition-all duration-700 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-3 ${
                 isVisible ? `animate-scale-in animation-delay-${(index + 1) * 150}` : "opacity-0"
-              } ${project.featured ? 'ring-1 ring-primary/20' : ''}`}
+              } ${project.featured ? 'ring-1 ring-primary/20' : ''} ${
+                index >= 4 && showAll ? 'animate-fade-in-up' : ''
+              }`}
               onMouseEnter={() => setHoveredProject(project.title)}
               onMouseLeave={() => setHoveredProject(null)}
             >
@@ -327,16 +320,40 @@ export function Projects() {
               </CardContent>
             </Card>
           ))}
-        </div>
+          </div>
 
-        {/* Call to Action */}
-        <div className={`text-center mt-16 transition-all duration-700 delay-500 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          {/* Show More Button */}
+          {hasMoreProjects && (
+            <div className={`text-center mt-16 transition-all duration-700 delay-500 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => setShowAll(!showAll)}
+                className="group px-8 py-4 rounded-full text-base font-medium hover:scale-105 transition-all duration-300"
+              >
+                {showAll ? (
+                  <>
+                    Show Less Projects
+                    <ChevronDown className="ml-2 h-5 w-5 rotate-180 transition-transform duration-300" />
+                  </>
+                ) : (
+                  <>
+                    Show More Projects ({sortedProjects.length - 4} more)
+                  <ChevronDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform duration-300" />
+                </>
+              )}
+            </Button>
+          </div>
+        )}
+
+        {/* GitHub Link */}
+        <div className={`text-center mt-8 transition-all duration-700 delay-700 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <div className="inline-flex items-center gap-4 px-6 py-3 rounded-full bg-card/50 backdrop-blur-sm border border-border">
-            <span className="text-muted-foreground">Want to see more?</span>
-            <Button variant="outline" size="sm" asChild>
+            <span className="text-muted-foreground">Explore more on GitHub</span>
+            <Button variant="ghost" size="sm" asChild>
               <a href="https://github.com/ASTRO-47" target="_blank" rel="noopener noreferrer">
                 <Github className="h-4 w-4 mr-2" />
-                View All Projects
+                View All Repositories
               </a>
             </Button>
           </div>

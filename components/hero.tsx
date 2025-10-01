@@ -1,66 +1,74 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Download, ArrowDown, Code, Sparkles } from "lucide-react"
-import Image from "next/image"
-import { useEffect, useState } from "react"
+import { Button } from "@/components/ui/button";
+import { Download, ArrowDown, Code, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export function Hero() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true)
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
+    setIsLoaded(true);
 
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const handleViewWork = () => {
-    const projectsSection = document.getElementById("projects")
+    const projectsSection = document.getElementById("projects");
     if (projectsSection) {
       const offsetTop =
-        projectsSection.getBoundingClientRect().top + window.pageYOffset - 80
-      window.scrollTo({ top: offsetTop, behavior: "smooth" })
+        projectsSection.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background"
+      className="mt-10 md:mt-0 relative flex min-h-screen items-center justify-center overflow-hidden bg-background"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         {/* Gradient Orbs */}
-        <div 
+        <div
           className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 blur-3xl animate-float"
           style={{
-            top: '20%',
-            left: '10%',
-            transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
+            top: "20%",
+            left: "10%",
+            transform: `translate(${mousePosition.x * 0.02}px, ${
+              mousePosition.y * 0.02
+            }px)`,
           }}
         />
-        <div 
+        <div
           className="absolute w-80 h-80 rounded-full bg-gradient-to-r from-accent/20 to-primary/20 blur-3xl animate-float animation-delay-300"
           style={{
-            bottom: '20%',
-            right: '10%',
-            transform: `translate(${mousePosition.x * -0.01}px, ${mousePosition.y * -0.01}px)`
+            bottom: "20%",
+            right: "10%",
+            transform: `translate(${mousePosition.x * -0.01}px, ${
+              mousePosition.y * -0.01
+            }px)`,
           }}
         />
-        
+
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_40%,transparent_70%)]" />
       </div>
 
       <div className="container mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-6 py-20 lg:flex-row lg:gap-24 relative z-10">
         {/* Text Content */}
-        <div className={`flex-1 text-center lg:text-left transition-all duration-1000 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div
+          className={`flex-1 text-center lg:text-left transition-all duration-1000 ${
+            isLoaded ? "animate-fade-in-up" : "opacity-0"
+          }`}
+        >
           {/* <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-5 py-2 text-sm font-medium text-primary shadow-sm border border-primary/20 backdrop-blur-sm">
             <Sparkles className="h-4 w-4 animate-bounce-subtle" />
             Welcome to my portfolio
@@ -104,12 +112,20 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Button>
             <Button
-              variant="outline"
               size="lg"
-              className="group border-2 border-primary/20 bg-transparent backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-primary hover:bg-primary/10"
+              variant="outline"
+              className="group relative border-2 border-border/50 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/25 dark:border-border/30 dark:bg-background/30 dark:hover:bg-primary/20"
+              asChild
             >
-              <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
-              Download CV
+              <a
+                href="/resume_final.pdf"
+                download="Imad_Ez-Zaghba_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
+                Download CV
+              </a>
             </Button>
           </div>
 
@@ -121,19 +137,27 @@ export function Hero() {
               { number: "15+", label: "Technologies" },
             ].map((stat, index) => (
               <div key={stat.label} className="text-center">
-                <div className="text-2xl font-bold text-primary">{stat.number}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-2xl font-bold text-primary">
+                  {stat.number}
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Image */}
-        <div className={`relative flex-shrink-0 transition-all duration-1000 delay-300 ${isLoaded ? 'animate-scale-in' : 'opacity-0'}`}>
+        <div
+          className={`relative flex-shrink-0 transition-all duration-1000 delay-300 ${
+            isLoaded ? "animate-scale-in" : "opacity-0"
+          }`}
+        >
           <div className="relative">
             {/* Glow effect */}
             <div className="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-full opacity-20 blur-2xl animate-pulse" />
-            
+
             {/* Main image container */}
             <div className="relative h-80 w-80 overflow-hidden rounded-full border-4 border-primary/20 bg-gradient-to-br from-primary/10 to-accent/10 p-2 shadow-2xl lg:h-96 lg:w-96">
               <div className="h-full w-full overflow-hidden rounded-full">
@@ -163,5 +187,5 @@ export function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
