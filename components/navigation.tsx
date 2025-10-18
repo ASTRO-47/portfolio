@@ -119,7 +119,7 @@ export function Navigation() {
                     title={item.name}
                     className={`group relative flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                       isActive
-                        ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/30"
+                        ? "bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary shadow-sm"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                     }`}
                   >
@@ -127,7 +127,7 @@ export function Navigation() {
                     <span className={isActive ? "inline" : "hidden xl:inline"}>{item.name}</span>
                     
                     {isActive && (
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse opacity-50" />
+                      <div className="absolute inset-0 rounded-full bg-primary/5 dark:bg-primary/10" />
                     )}
                   </a>
                 )
@@ -183,14 +183,14 @@ export function Navigation() {
                       onClick={(e) => handleClick(e, item.href)}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                         isActive
-                          ? "bg-gradient-to-r from-primary to-accent text-white shadow-md"
+                          ? "bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary shadow-sm"
                           : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                       }`}
                     >
                       <Icon className="h-5 w-5" />
                       <span className="flex-1">{item.name}</span>
                       {isActive && (
-                        <div className="h-2 w-2 rounded-full bg-white animate-pulse" />
+                        <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
                       )}
                     </a>
                   )

@@ -1,8 +1,15 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Mail, Github, Linkedin, Twitter } from "lucide-react"
+import { Mail, Github, Linkedin } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
+
+// Custom X (Twitter) icon component
+const XIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+)
 
 const socialLinks = [
   {
@@ -24,8 +31,8 @@ const socialLinks = [
     label: "Imad Ez-Zaghba",
   },
   {
-    name: "Twitter",
-    icon: Twitter,
+    name: "X",
+    icon: XIcon,
     href: "https://twitter.com/yourusername",
     label: "Imad Ez-Zaghba",
   },
@@ -76,6 +83,7 @@ export function Contact() {
           <div className="grid gap-4 sm:grid-cols-2">
             {socialLinks.map((link, index) => {
               const Icon = link.icon
+              const isXIcon = link.name === "X (Twitter)"
               return (
                 <Button
                   key={link.name}
@@ -88,7 +96,7 @@ export function Contact() {
                 >
                   <a href={link.href} target="_blank" rel="noopener noreferrer">
                     <div className="rounded-lg bg-primary/10 p-3 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
-                      <Icon className="h-6 w-6" />
+                      {isXIcon ? <Icon /> : <Icon className="h-6 w-6" />}
                     </div>
                     <div className="flex-1 text-left">
                       <div className="font-semibold text-foreground">{link.name}</div>
