@@ -153,17 +153,18 @@ export function AnimatedBackground() {
       }
 
       update(mouseX: number, mouseY: number) {
-        // Autonomous movement - very slow
-        this.x += Math.sin(Date.now() * 0.001) * 0.001
-        this.y += Math.cos(Date.now() * 0.001) * 0.001
+        // Smooth autonomous movement
+        this.x += Math.sin(Date.now() * 0.0008) * 0.3
+        this.y += Math.cos(Date.now() * 0.0008) * 0.3
 
-        // Almost imperceptible mouse interaction
+        // Gentle mouse attraction - barely noticeable 
         const dx = mouseX - this.x
         const dy = mouseY - this.y
         const distance = Math.sqrt(dx * dx + dy * dy)
         
-        if (distance > 0 && distance < 600) {
-          const force = (1 - distance / 600) * 0.00002
+        if (distance > 0 && distance < 500) {
+          // Very subtle pull towards mouse
+          const force = (1 - distance / 500) * 0.00005
           this.x += dx * force
           this.y += dy * force
         }
@@ -272,12 +273,35 @@ export function AnimatedBackground() {
         style={{ width: "100vw", height: "100vh" }}
       />
       
-      {/* Additional glow overlay - ultra slow and subtle */}
+      {/* Elegant multi-layer mouse spotlight */}
       <div className="fixed inset-0 -z-[9] pointer-events-none">
+        {/* Outer glow - subtle lag for depth */}
         <div 
-          className="absolute w-[300px] h-[300px] rounded-full opacity-5 blur-3xl transition-all duration-[5000ms] ease-out"
+          className="absolute w-[800px] h-[800px] rounded-full opacity-20 blur-3xl transition-all duration-300 ease-out"
           style={{
-            background: "radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.08) 30%, transparent 70%)",
+            left: `${mousePos.x}px`,
+            top: `${mousePos.y}px`,
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+        
+        {/* Middle glow - medium response */}
+        <div 
+          className="absolute w-[500px] h-[500px] rounded-full opacity-30 blur-2xl transition-all duration-150 ease-out"
+          style={{
+            background: "radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, rgba(59, 130, 246, 0.08) 40%, transparent 70%)",
+            left: `${mousePos.x}px`,
+            top: `${mousePos.y}px`,
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+        
+        {/* Inner glow - instant follow */}
+        <div 
+          className="absolute w-[250px] h-[250px] rounded-full opacity-40 blur-xl transition-all duration-0 ease-out"
+          style={{
+            background: "radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 65%)",
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
             transform: "translate(-50%, -50%)",
