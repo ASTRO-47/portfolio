@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Download, ArrowDown, Code, Sparkles } from "lucide-react";
 import Image from "next/image";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useEffect, useState } from "react";
 
 export function Hero() {
@@ -76,10 +77,11 @@ export function Hero() {
 
           <h1 className="mb-4 text-balance text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Hi, I&apos;m{" "}
-            <span className="relative">
+            <span className="relative inline-flex items-baseline">
               <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
                 Imad Ez-Zaghba
               </span>
+              <span className="ml-0.5 inline-block h-[0.9em] w-[3px] bg-primary animate-pulse align-text-bottom" />
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 blur opacity-30 group-hover:opacity-50 transition duration-1000" />
             </span>
           </h1>
@@ -88,7 +90,7 @@ export function Hero() {
             <h2 className="text-2xl font-semibold text-muted-foreground sm:text-3xl animate-slide-in-left animation-delay-200">
               <span className="inline-flex items-center gap-2">
                 <Code className="h-6 w-6 text-primary" />
-                Frontend Developer
+                Full Stack Developer
               </span>
             </h2>
           </div>
@@ -118,7 +120,7 @@ export function Hero() {
               asChild
             >
               <a
-                href="/resume_final.pdf"
+                href="/Ez-Zaghba_fullstatck.pdf"
                 download="Imad_Ez-Zaghba_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -148,42 +150,34 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Image */}
+        {/* Portrait */}
         <div
           className={`relative flex-shrink-0 transition-all duration-1000 delay-300 ${
             isLoaded ? "animate-scale-in" : "opacity-0"
           }`}
         >
-          <div className="relative">
-            {/* Glow effect */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-full opacity-20 blur-2xl animate-pulse" />
+          <div className="relative group">
+            {/* Outer glow */}
+            <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-accent/20 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity" />
 
-            {/* Main image container */}
-            <div className="relative h-80 w-80 overflow-hidden rounded-full border-4 border-primary/20 bg-gradient-to-br from-primary/10 to-accent/10 p-2 shadow-2xl lg:h-96 lg:w-96">
-              <div className="h-full w-full overflow-hidden rounded-full">
-                <Image
-                  src="/port_image.jpeg"
-                  alt="Imad Ez-Zaghba - Frontend Developer"
-                  fill
-                  className="object-cover transition-transform duration-700 hover:scale-110"
-                  priority
-                />
-              </div>
+            {/* Main image container - Sharp Rectangle */}
+            <div className="relative h-[400px] w-[320px] lg:h-[480px] lg:w-[384px] overflow-hidden border-4 border-primary/20 shadow-2xl">
+              <Image
+                src="/iez-zagh5.JPG"
+                alt="Imad Ez-Zaghba"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                priority
+              />
+              
+              {/* Gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
 
-            {/* Floating elements */}
-            <div className="absolute -top-4 -right-4 h-8 w-8 rounded-full bg-gradient-to-r from-primary to-accent animate-bounce-subtle" />
-            <div className="absolute -bottom-6 -left-6 h-6 w-6 rounded-full bg-gradient-to-r from-accent to-primary animate-bounce-subtle animation-delay-500" />
-            <div className="absolute top-1/2 -left-8 h-4 w-4 rounded-full bg-primary animate-float animation-delay-700" />
+            {/* Corner accents */}
+            <div className="absolute -top-2 -right-2 h-4 w-4 border-t-2 border-r-2 border-primary" />
+            <div className="absolute -bottom-2 -left-2 h-4 w-4 border-b-2 border-l-2 border-accent" />
           </div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-subtle animation-delay-1000">
-        <div className="flex flex-col items-center gap-2 text-muted-foreground">
-          <div className="text-sm">Scroll to explore</div>
-          <ArrowDown className="h-4 w-4" />
         </div>
       </div>
     </section>
