@@ -163,11 +163,9 @@ export function Projects() {
   }, [])
 
   return (
-    <section id="projects" ref={sectionRef} className="relative py-24 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/30 to-background" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_hsl(var(--primary))_0%,_transparent_50%)] opacity-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_hsl(var(--accent))_0%,_transparent_50%)] opacity-10" />
+    <section id="projects" ref={sectionRef} className="relative py-24">
+      {/* Subtle section divider */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       
       <div className="container mx-auto max-w-7xl px-4 relative z-10">
         {/* Header Section */}

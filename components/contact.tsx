@@ -50,7 +50,10 @@ export function Contact() {
     return () => observer.disconnect()
   }, [])
   return (
-    <section id="contact" ref={sectionRef} className="bg-secondary/30 py-15">
+    <section id="contact" ref={sectionRef} className="py-20 relative">
+      {/* Subtle section divider */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      
       <div className="container mx-auto max-w-7xl px-4">
         <div
           className={`mb-12 text-center transition-all duration-700 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}

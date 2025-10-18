@@ -4,10 +4,12 @@ import { Projects } from "@/components/projects"
 import { Resume } from "@/components/resume"
 import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
+import { AnimatedBackground } from "@/components/animated-background"
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <AnimatedBackground />
       <Navigation />
       <main id="content" className="">
         <Hero />

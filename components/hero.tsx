@@ -33,36 +33,8 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="mt-10 md:mt-0 relative flex min-h-screen items-center justify-center overflow-hidden bg-background"
+      className="mt-10 md:mt-0 relative flex min-h-screen items-center justify-center overflow-hidden"
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        {/* Gradient Orbs */}
-        <div
-          className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 blur-3xl animate-float"
-          style={{
-            top: "20%",
-            left: "10%",
-            transform: `translate(${mousePosition.x * 0.02}px, ${
-              mousePosition.y * 0.02
-            }px)`,
-          }}
-        />
-        <div
-          className="absolute w-80 h-80 rounded-full bg-gradient-to-r from-accent/20 to-primary/20 blur-3xl animate-float animation-delay-300"
-          style={{
-            bottom: "20%",
-            right: "10%",
-            transform: `translate(${mousePosition.x * -0.01}px, ${
-              mousePosition.y * -0.01
-            }px)`,
-          }}
-        />
-
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_40%,transparent_70%)]" />
-      </div>
-
       <div className="container mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-6 py-20 lg:flex-row lg:gap-24 relative z-10">
         {/* Text Content */}
         <div
@@ -77,11 +49,10 @@ export function Hero() {
 
           <h1 className="mb-4 text-balance text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Hi, I&apos;m{" "}
-            <span className="relative inline-flex items-baseline">
-              <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
+            <span className="relative">
+              <span className="bg-gradient-to-r from-primary via-primary to-primary bg-clip-text text-transparent dark:from-primary dark:via-primary/80 dark:to-accent">
                 Imad Ez-Zaghba
               </span>
-              <span className="ml-0.5 inline-block h-[0.9em] w-[3px] bg-primary animate-pulse align-text-bottom" />
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 blur opacity-30 group-hover:opacity-50 transition duration-1000" />
             </span>
           </h1>
@@ -121,7 +92,7 @@ export function Hero() {
             >
               <a
                 href="/Ez-Zaghba_fullstatck.pdf"
-                download="Imad_Ez-Zaghba_CV.pdf"
+                download="Ez-Zaghba_fullstack.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
