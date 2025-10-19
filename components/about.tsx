@@ -48,7 +48,7 @@ export function About() {
   }, [])
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 relative">
+    <section id="about" ref={sectionRef} className="py-8 md:py-12 relative">
       <div className="container mx-auto max-w-7xl px-4">
         <div
           className={`mb-12 text-center transition-all duration-700 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}

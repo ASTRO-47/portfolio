@@ -57,7 +57,7 @@ export function Contact() {
     return () => observer.disconnect()
   }, [])
   return (
-    <section id="contact" ref={sectionRef} className="py-20 relative">
+    <section id="contact" ref={sectionRef} className="py-8 md:py-12 relative">
       {/* Subtle section divider */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       

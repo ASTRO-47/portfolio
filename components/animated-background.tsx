@@ -1,11 +1,18 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { useTheme } from "next-themes"
 
 export function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const mousePosRef = useRef({ x: 0, y: 0 })
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -18,7 +25,7 @@ export function AnimatedBackground() {
 
   useEffect(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas || !mounted) return
 
     const ctx = canvas.getContext("2d")
     if (!ctx) return
@@ -49,7 +56,12 @@ export function AnimatedBackground() {
       ]
     }
 
-    const isDark = () => document.documentElement.classList.contains("dark")
+    const isDark = () => {
+      if (theme === 'system') {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+      }
+      return theme === 'dark'
+    }
 
     class Particle {
       x: number
@@ -123,7 +135,7 @@ export function AnimatedBackground() {
 
         const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
         gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`)
-        gradient.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${isDark() ? 0.08 : 0.05})`)
+        gradient.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${isDark() ? 0.12 : 0.08})`)
         
         ctx.fillStyle = gradient
         ctx.fill()
@@ -181,7 +193,7 @@ export function AnimatedBackground() {
           this.x, this.y, currentRadius
         )
 
-        const alpha = isDark() ? 0.15 : 0.1
+        const alpha = isDark() ? 0.18 : 0.12
         gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${alpha})`)
         gradient.addColorStop(0.5, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${alpha * 0.5})`)
         gradient.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`)
@@ -236,7 +248,7 @@ export function AnimatedBackground() {
       })
 
       // Draw connections between nearby particles
-      ctx.strokeStyle = isDark() ? "rgba(99, 102, 241, 0.1)" : "rgba(99, 102, 241, 0.06)"
+      ctx.strokeStyle = isDark() ? "rgba(99, 102, 241, 0.15)" : "rgba(99, 102, 241, 0.12)"
       ctx.lineWidth = 0.5
       
       for (let i = 0; i < particles.length; i++) {
@@ -263,7 +275,7 @@ export function AnimatedBackground() {
       window.removeEventListener("resize", resize)
       cancelAnimationFrame(animationFrameId)
     }
-  }, [])
+  }, [theme, mounted])
 
   return (
     <>
@@ -277,9 +289,11 @@ export function AnimatedBackground() {
       <div className="fixed inset-0 -z-[9] pointer-events-none">
         {/* Outer glow - subtle lag for depth */}
         <div 
-          className="absolute w-[800px] h-[800px] rounded-full opacity-20 blur-3xl transition-all duration-300 ease-out"
+          className="absolute w-[800px] h-[800px] rounded-full blur-3xl transition-all duration-300 ease-out opacity-20 dark:opacity-25"
           style={{
-            background: "radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.08) 30%, transparent 70%)",
+            background: theme === 'dark' 
+              ? "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.1) 30%, transparent 70%)"
+              : "radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.08) 30%, transparent 70%)",
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
             transform: "translate(-50%, -50%)",
@@ -288,9 +302,11 @@ export function AnimatedBackground() {
         
         {/* Middle glow - medium response */}
         <div 
-          className="absolute w-[500px] h-[500px] rounded-full opacity-30 blur-2xl transition-all duration-150 ease-out"
+          className="absolute w-[500px] h-[500px] rounded-full blur-2xl transition-all duration-150 ease-out opacity-30 dark:opacity-35"
           style={{
-            background: "radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, rgba(59, 130, 246, 0.08) 40%, transparent 70%)",
+            background: theme === 'dark'
+              ? "radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, rgba(59, 130, 246, 0.1) 40%, transparent 70%)"
+              : "radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, rgba(59, 130, 246, 0.08) 40%, transparent 70%)",
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
             transform: "translate(-50%, -50%)",
@@ -299,9 +315,11 @@ export function AnimatedBackground() {
         
         {/* Inner glow - instant follow */}
         <div 
-          className="absolute w-[250px] h-[250px] rounded-full opacity-40 blur-xl transition-all duration-0 ease-out"
+          className="absolute w-[250px] h-[250px] rounded-full blur-xl transition-all duration-0 ease-out opacity-40 dark:opacity-45"
           style={{
-            background: "radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 65%)",
+            background: theme === 'dark'
+              ? "radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, transparent 65%)"
+              : "radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 65%)",
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
             transform: "translate(-50%, -50%)",

@@ -82,6 +82,23 @@ export function Navigation() {
         Skip to content
       </a>
 
+      {/* Theme toggle - fixed top right */}
+      <div className="fixed top-4 right-4 z-50">
+        <div className="relative">
+          <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-full blur-lg opacity-60" />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="relative h-11 w-11 rounded-full border border-border/50 bg-background/80 backdrop-blur-xl hover:bg-primary/10 hover:border-primary/50 transition-all shadow-lg hover:shadow-primary/20"
+            aria-label="Toggle theme"
+          >
+            <Sun className="h-[1.3rem] w-[1.3rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-primary" />
+            <Moon className="absolute h-[1.3rem] w-[1.3rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-primary" />
+          </Button>
+        </div>
+      </div>
+
       <div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 z-50"
         role="progressbar"
@@ -133,19 +150,6 @@ export function Navigation() {
                 )
               })}
             </div>
-
-            <div className="hidden md:block h-8 w-px bg-border/50 mx-1" />
-
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="h-10 w-10 rounded-full hover:bg-muted/50 transition-all"
-              aria-label="Toggle theme"
-            >
-              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            </Button>
 
             <Button
               variant="ghost"
