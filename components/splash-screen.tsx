@@ -7,6 +7,17 @@ export function SplashScreen() {
   const [isLoading, setIsLoading] = useState(true)
   const [step, setStep] = useState(0)
 
+  // Memoize particles to prevent regeneration on every render
+  const particles = useState(() => 
+    Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      scale: Math.random() * 0.5 + 0.5,
+      duration: Math.random() * 2 + 2,
+    }))
+  )[0]
+
   useEffect(() => {
     // Check if user has visited before
     const hasVisited = sessionStorage.getItem("hasVisited")
@@ -30,15 +41,6 @@ export function SplashScreen() {
 
     return () => timers.forEach(timer => clearTimeout(timer))
   }, [])
-
-  // Create random particles
-  const particles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    scale: Math.random() * 0.5 + 0.5,
-    duration: Math.random() * 2 + 2,
-  }))
 
   return (
     <AnimatePresence mode="wait">
@@ -211,28 +213,40 @@ export function SplashScreen() {
                 }}
                 className="mt-6"
               >
-                <div className="relative">
+                <div className="relative w-16 h-16">
                   <motion.div
-                    animate={{
-                      rotate: 360,
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 360 }}
+                    transition={{ 
+                      duration: 3, 
+                      repeat: Infinity, 
+                      ease: "linear",
+                      repeatType: "loop"
                     }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                    className="w-16 h-16 rounded-full border-2 border-primary/30"
+                    className="absolute inset-0 rounded-full border-2 border-primary/30 will-change-transform"
                   />
                   <motion.div
-                    animate={{
-                      rotate: -360,
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: -360 }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      ease: "linear",
+                      repeatType: "loop"
                     }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-2 rounded-full border-2 border-accent/30 border-dashed"
+                    className="absolute inset-2 rounded-full border-2 border-accent/30 border-dashed will-change-transform"
                   />
                   <motion.div
                     animate={{
                       scale: [1, 1.2, 1],
                       opacity: [0.5, 1, 0.5],
                     }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute inset-4 rounded-full bg-gradient-to-r from-primary to-accent"
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute inset-4 rounded-full bg-gradient-to-r from-primary to-accent will-change-transform"
                   />
                 </div>
               </motion.div>
