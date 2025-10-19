@@ -235,9 +235,9 @@ export function Projects() {
     return parseInt(b.year) - parseInt(a.year)
   })
 
-  // Show first 4 projects initially, then all when expanded
-  const displayedProjects = showAll ? sortedProjects : sortedProjects.slice(0, 4)
-  const hasMoreProjects = sortedProjects.length > 4
+  // Show first 6 projects initially (2 full rows), then all when expanded
+  const displayedProjects = showAll ? sortedProjects : sortedProjects.slice(0, 6)
+  const hasMoreProjects = sortedProjects.length > 6
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -285,14 +285,14 @@ export function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {displayedProjects.map((project, index) => (
             <Card
               key={project.title}
               className={`group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm transition-all duration-700 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-3 cursor-pointer ${
                 isVisible ? `animate-scale-in animation-delay-${(index + 1) * 150}` : "opacity-0"
               } ${project.featured ? 'ring-1 ring-primary/20' : ''} ${
-                index >= 4 && showAll ? 'animate-fade-in-up' : ''
+                index >= 6 && showAll ? 'animate-fade-in-up' : ''
               }`}
               onMouseEnter={() => setHoveredProject(project.title)}
               onMouseLeave={() => setHoveredProject(null)}
@@ -327,7 +327,7 @@ export function Projects() {
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
                     fill
-                    className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
+                    className="object-cover transition-all duration-700 group-hover:scale-110"
                   />
                   
                   {/* Hover overlay with actions */}
@@ -363,14 +363,14 @@ export function Projects() {
                 </div>
               </CardHeader>
 
-              <CardContent className="p-6 space-y-4">
+              <CardContent className="p-4 space-y-3">
                 {/* Project header */}
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300 truncate">
                       {project.title}
                     </h3>
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
                       <span className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
                         {project.year}
@@ -381,38 +381,35 @@ export function Projects() {
                   </div>
                   
                   {/* Stats */}
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <Star className="h-3 w-3" />
                       {project.stats.stars}
                     </span>
-                    <span className="flex items-center gap-1">
-                      <Eye className="h-3 w-3" />
-                      {project.stats.views}
-                    </span>
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-muted-foreground leading-relaxed">
+                {/* Description - limited to 2 lines */}
+                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                   {project.description}
                 </p>
 
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
+                {/* Tech Stack - limited tags */}
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tags.slice(0, 4).map((tag) => (
                     <Badge
                       key={tag}
                       variant="secondary"
-                      className={`text-xs font-medium transition-all duration-300 hover:scale-105 ${
-                        hoveredProject === project.title 
-                          ? `animation-delay-${tagIndex * 50} animate-fade-in-up` 
-                          : ''
-                      }`}
+                      className="text-xs font-medium"
                     >
                       {tag}
                     </Badge>
                   ))}
+                  {project.tags.length > 4 && (
+                    <Badge variant="secondary" className="text-xs font-medium">
+                      +{project.tags.length - 4}
+                    </Badge>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -435,10 +432,10 @@ export function Projects() {
                   </>
                 ) : (
                   <>
-                    Show More Projects ({sortedProjects.length - 4} more)
-                  <ChevronDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform duration-300" />
-                </>
-              )}
+                    Show More Projects ({sortedProjects.length - 6} more)
+                    <ChevronDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform duration-300" />
+                  </>
+                )}
             </Button>
           </div>
         )}
