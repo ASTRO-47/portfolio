@@ -33,9 +33,9 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="mt-10 md:mt-0 relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="mt-20 md:mt-0 relative flex min-h-screen items-center justify-center overflow-hidden"
     >
-      <div className="container mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-6 py-8 md:py-12 lg:flex-row lg:gap-24 relative z-10">
+      <div className="container mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-6 py-0 md:py-0 lg:flex-row lg:gap-24 relative z-10">
         {/* Text Content */}
         <div
           className={`flex-1 text-center lg:text-left transition-all duration-1000 ${
@@ -91,7 +91,7 @@ export function Hero() {
               asChild
             >
               <a
-                href="/Ez-Zaghba_fullstatck.pdf"
+                href="/imad-zaghba.pdf"
                 download="Ez-Zaghba_fullstack.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -134,7 +134,7 @@ export function Hero() {
             {/* Main image container - Sharp Rectangle */}
             <div className="relative h-[400px] w-[320px] lg:h-[480px] lg:w-[384px] overflow-hidden border-4 border-primary/20 shadow-2xl">
               <Image
-                src="/iez-zagh5.JPG"
+                src="/suit_pic.png"
                 alt="Imad Ez-Zaghba"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"

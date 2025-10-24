@@ -15,7 +15,7 @@ export function Resume() {
             convenience.
           </p>
           <Button size="lg" className="group" asChild>
-            <a href="/Ez-Zaghba_fullstack.pdf" download>
+            <a href="/imad-zaghba.pdf" download>
               <Download className="mr-2 h-5 w-5 transition-transform group-hover:translate-y-1" />
               Download Resume (PDF)
             </a>

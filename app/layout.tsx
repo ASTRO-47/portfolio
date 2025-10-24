@@ -9,10 +9,10 @@ import { SplashScreen } from "@/components/splash-screen"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Imad Ez-Zaghba - Frontend Developer Portfolio",
-  description: "Frontend Developer specializing in React, Next.js, and modern web technologies. Creating beautiful, responsive web experiences.",
+  title: "Imad Ez-Zaghba",
+  description: "full-stack Developer specializing in nodejs, React, Next.js, and modern web technologies. Creating beautiful, responsive web experiences.",
   generator: "v0.app",
-  keywords: ["Frontend Developer", "React", "Next.js", "TypeScript", "Web Development", "Portfolio"],
+  keywords: ["Frontend Developer", "imad zaghba"," full statck", "React", "Next.js", "TypeScript", "Web Development", "Portfolio"],
   authors: [{ name: "Imad Ez-Zaghba" }],
 }
 
