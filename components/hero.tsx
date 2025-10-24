@@ -36,9 +36,9 @@ export function Hero() {
 
     <section
       id="home"
-      className="mt-[95px] sm:mt-0 relative flex min-h-screen items-center justify-center overflow-hidden pb-0"
+      className="mt-[95px] sm:mt-0 relative flex items-center justify-center overflow-hidden  pb-8"
       >
-      <div className="container mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-6 py-0 md:py-0 lg:flex-row lg:gap-24 relative z-10">
+      <div className=" mt-25 container mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-6 py-0 md:py-0 lg:flex-row lg:gap-24 relative z-10">
         {/* Text Content */}
         <div
           className={`flex-1 text-center lg:text-left transition-all duration-1000 ${

@@ -34,7 +34,7 @@ const FullStackSlider: React.FC = () => {
   // Triple for seamless loop
   const multipliedTechs: Technology[] = [...technologies, ...technologies, ...technologies];
 
-  // Auto-scroll effect
+  // Auto-scroll effect with infinite loop
   useEffect(() => {
     if (!isAutoScrolling || !scrollRef.current) return;
 
@@ -46,14 +46,19 @@ const FullStackSlider: React.FC = () => {
       if (!scrollContainer) return;
       
       const maxScroll = scrollContainer.scrollWidth;
-      const sectionWidth = maxScroll / 3;
+      const viewportWidth = scrollContainer.clientWidth;
+      const sectionWidth = (maxScroll - viewportWidth) / 3;
       
       // Smoothly scroll
       scrollContainer.scrollLeft += scrollSpeed;
       
-      // Reset position when reaching the end of the second section
-      // This creates the infinite loop effect
+      // Reset to start of second section when reaching end of second section
       if (scrollContainer.scrollLeft >= sectionWidth * 2) {
+        scrollContainer.scrollLeft = scrollContainer.scrollLeft - sectionWidth;
+      }
+      
+      // Also handle if scrolled to beginning
+      if (scrollContainer.scrollLeft <= 0) {
         scrollContainer.scrollLeft = sectionWidth;
       }
 
@@ -72,7 +77,9 @@ const FullStackSlider: React.FC = () => {
   // Initialize scroll position to middle section
   useEffect(() => {
     if (scrollRef.current) {
-      const sectionWidth = scrollRef.current.scrollWidth / 3;
+      const maxScroll = scrollRef.current.scrollWidth;
+      const viewportWidth = scrollRef.current.clientWidth;
+      const sectionWidth = (maxScroll - viewportWidth) / 3;
       scrollRef.current.scrollLeft = sectionWidth;
     }
   }, []);
@@ -95,7 +102,8 @@ const FullStackSlider: React.FC = () => {
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
     const walk = (x - startX) * 2;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
+    const newScrollLeft = scrollLeft - walk;
+    scrollRef.current.scrollLeft = newScrollLeft;
   };
 
   const handleWheel = (): void => {
@@ -103,8 +111,32 @@ const FullStackSlider: React.FC = () => {
     setTimeout(() => setIsAutoScrolling(true), 2000);
   };
 
+  // Handle infinite loop for manual scrolling
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      const maxScroll = scrollContainer.scrollWidth;
+      const viewportWidth = scrollContainer.clientWidth;
+      const sectionWidth = (maxScroll - viewportWidth) / 3;
+
+      // Loop back if scrolled too far right
+      if (scrollContainer.scrollLeft >= sectionWidth * 2) {
+        scrollContainer.scrollLeft = scrollContainer.scrollLeft - sectionWidth;
+      }
+      // Loop forward if scrolled too far left
+      else if (scrollContainer.scrollLeft <= 0) {
+        scrollContainer.scrollLeft = sectionWidth;
+      }
+    };
+
+    scrollContainer.addEventListener('scroll', handleScroll);
+    return () => scrollContainer.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="bg-transparent flex items-center justify-center py-0">
+    <div className="bg-transparent flex items-center justify-center py-0 ">
       <div className="w-full max-w-6xl">
         <div className="relative">
           {/* Gradient overlays */}
@@ -112,7 +144,7 @@ const FullStackSlider: React.FC = () => {
           {/* Scrollable container */}
           <div
             ref={scrollRef}
-            className="flex overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing py-6"
+            className="flex overflow-x-auto scrollbar-hide cursor-default py-6"
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
@@ -128,7 +160,7 @@ const FullStackSlider: React.FC = () => {
                   relative
                   transform transition-all duration-300
                   hover:scale-120
-                  select-none
+                  select-none cursor-default
                 `}>
                   <img 
                     src={tech.icon} 
