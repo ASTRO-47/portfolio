@@ -5,6 +5,7 @@ import { Download, ArrowDown, Code, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useEffect, useState } from "react";
+import FullStackSlider from "./skills_slider";
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -31,22 +32,19 @@ export function Hero() {
   };
 
   return (
+    <div>
+
     <section
       id="home"
-      className="mt-20 md:mt-0 relative flex min-h-screen items-center justify-center overflow-hidden"
-    >
+      className="mt-[95px] sm:mt-0 relative flex min-h-screen items-center justify-center overflow-hidden pb-0"
+      >
       <div className="container mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-6 py-0 md:py-0 lg:flex-row lg:gap-24 relative z-10">
         {/* Text Content */}
         <div
           className={`flex-1 text-center lg:text-left transition-all duration-1000 ${
             isLoaded ? "animate-fade-in-up" : "opacity-0"
-          }`}
-        >
-          {/* <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-5 py-2 text-sm font-medium text-primary shadow-sm border border-primary/20 backdrop-blur-sm">
-            <Sparkles className="h-4 w-4 animate-bounce-subtle" />
-            Welcome to my portfolio
-          </div> */}
-
+            }`}
+            >
           <h1 className="mb-4 text-balance text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Hi, I&apos;m{" "}
             <span className="relative">
@@ -89,13 +87,13 @@ export function Hero() {
               variant="outline"
               className="group relative border-2 border-border/50 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/25 dark:border-border/30 dark:bg-background/30 dark:hover:bg-primary/20"
               asChild
-            >
+              >
               <a
                 href="/imad-zaghba.pdf"
                 download="Ez-Zaghba_fullstack.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
+                >
                 <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
                 Download CV
               </a>
@@ -125,8 +123,8 @@ export function Hero() {
         <div
           className={`relative flex-shrink-0 transition-all duration-1000 delay-300 ${
             isLoaded ? "animate-scale-in" : "opacity-0"
-          }`}
-        >
+            }`}
+            >
           <div className="relative group">
             {/* Outer glow */}
             <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-accent/20 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity" />
@@ -139,7 +137,7 @@ export function Hero() {
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 priority
-              />
+                />
               
               {/* Gradient overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -152,5 +150,7 @@ export function Hero() {
         </div>
       </div>
     </section>
+      <FullStackSlider/>
+  </div>
   );
 }
