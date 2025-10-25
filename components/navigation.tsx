@@ -66,7 +66,7 @@ export function Navigation() {
     e.preventDefault()
     const element = document.getElementById(href.slice(1))
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80
+      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset
       window.scrollTo({ top: offsetTop, behavior: "smooth" })
     }
     setIsOpen(false)
