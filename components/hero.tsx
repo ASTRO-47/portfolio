@@ -6,6 +6,7 @@ import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useEffect, useState } from "react";
 import FullStackSlider from "./skills_slider";
+import CarouselGames from "./carousel";
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -150,7 +151,7 @@ export function Hero() {
         </div>
       </div>
     </section>
-      <FullStackSlider/>
+    <CarouselGames />
   </div>
   );
 }

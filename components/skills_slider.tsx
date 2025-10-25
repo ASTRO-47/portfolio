@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 
 interface Technology {
   name: string;
@@ -8,12 +8,6 @@ interface Technology {
 }
 
 const FullStackSlider: React.FC = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [startX, setStartX] = useState<number>(0);
-  const [scrollLeft, setScrollLeft] = useState<number>(0);
-  const [isAutoScrolling, setIsAutoScrolling] = useState<boolean>(true);
-
   const technologies: Technology[] = [
     { name: 'React', icon: '/icons/reactjs.svg', color: 'from-cyan-500 to-blue-500' },
     { name: 'Next.js', icon: '/icons/nextjs.svg', color: 'from-gray-800 to-gray-900' },
@@ -31,162 +25,47 @@ const FullStackSlider: React.FC = () => {
     { name: 'CSS3', icon: '/icons/css3.svg', color: 'from-blue-400 to-blue-600' },
   ];
 
-  // Triple for seamless loop
-  const multipliedTechs: Technology[] = [...technologies, ...technologies, ...technologies];
-
-  // Auto-scroll effect with infinite loop
-  useEffect(() => {
-    if (!isAutoScrolling || !scrollRef.current) return;
-
-    const scrollContainer = scrollRef.current;
-    let animationId: number;
-    const scrollSpeed = 1; // pixels per frame
-    
-    const autoScroll = (): void => {
-      if (!scrollContainer) return;
-      
-      const maxScroll = scrollContainer.scrollWidth;
-      const viewportWidth = scrollContainer.clientWidth;
-      const sectionWidth = (maxScroll - viewportWidth) / 3;
-      
-      // Smoothly scroll
-      scrollContainer.scrollLeft += scrollSpeed;
-      
-      // Reset to start of second section when reaching end of second section
-      if (scrollContainer.scrollLeft >= sectionWidth * 2) {
-        scrollContainer.scrollLeft = scrollContainer.scrollLeft - sectionWidth;
-      }
-      
-      // Also handle if scrolled to beginning
-      if (scrollContainer.scrollLeft <= 0) {
-        scrollContainer.scrollLeft = sectionWidth;
-      }
-
-      animationId = requestAnimationFrame(autoScroll);
-    };
-
-    animationId = requestAnimationFrame(autoScroll);
-
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, [isAutoScrolling]);
-
-  // Initialize scroll position to middle section
-  useEffect(() => {
-    if (scrollRef.current) {
-      const maxScroll = scrollRef.current.scrollWidth;
-      const viewportWidth = scrollRef.current.clientWidth;
-      const sectionWidth = (maxScroll - viewportWidth) / 3;
-      scrollRef.current.scrollLeft = sectionWidth;
-    }
-  }, []);
-
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
-    if (!scrollRef.current) return;
-    setIsDragging(true);
-    setIsAutoScrolling(false);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
-  };
-
-  const handleMouseUp = (): void => {
-    setIsDragging(false);
-    setTimeout(() => setIsAutoScrolling(true), 2000);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
-    if (!isDragging || !scrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    const newScrollLeft = scrollLeft - walk;
-    scrollRef.current.scrollLeft = newScrollLeft;
-  };
-
-  const handleWheel = (): void => {
-    setIsAutoScrolling(false);
-    setTimeout(() => setIsAutoScrolling(true), 2000);
-  };
-
-  // Handle infinite loop for manual scrolling
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    const handleScroll = () => {
-      const maxScroll = scrollContainer.scrollWidth;
-      const viewportWidth = scrollContainer.clientWidth;
-      const sectionWidth = (maxScroll - viewportWidth) / 3;
-
-      // Loop back if scrolled too far right
-      if (scrollContainer.scrollLeft >= sectionWidth * 2) {
-        scrollContainer.scrollLeft = scrollContainer.scrollLeft - sectionWidth;
-      }
-      // Loop forward if scrolled too far left
-      else if (scrollContainer.scrollLeft <= 0) {
-        scrollContainer.scrollLeft = sectionWidth;
-      }
-    };
-
-    scrollContainer.addEventListener('scroll', handleScroll);
-    return () => scrollContainer.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Double the array for seamless loop
+  const multipliedTechs: Technology[] = [...technologies, ...technologies];
 
   return (
-    <div className="bg-transparent flex items-center justify-center py-0 ">
+    <div className="bg-transparent flex items-center justify-center py-0">
       <div className="w-full max-w-6xl">
-        <div className="relative">
-          {/* Gradient overlays */}
-
-          {/* Scrollable container */}
-          <div
-            ref={scrollRef}
-            className="flex overflow-x-auto scrollbar-hide cursor-default py-6"
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-            onMouseMove={handleMouseMove}
-            onWheel={handleWheel}
-          >
-            {multipliedTechs.map((tech, index) => (
-              <div
-                key={`${tech.name}-${index}`}
-                className="flex-shrink-0 mx-4 group"
-              >
-                <div className={`
-                  relative
-                  transform transition-all duration-300
-                  hover:scale-120
-                  select-none cursor-default
-                `}>
-                  <img 
-                    src={tech.icon} 
-                    alt={`${tech.name} logo`}
-                    className="w-12 h-12 mb-3 "
-                  />
-                  {/* <div className="text-white font-semibold text-lg"> */}
-                    {/* {tech.name} */}
-                  {/* </div> */}
-                  
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0  transition-opacity duration-300 rounded-2xl"></div>
+        <div className="relative overflow-hidden">
+          <div className="flex py-6">
+            <div className="flex animate-scroll">
+              {multipliedTechs.map((tech, index) => (
+                <div
+                  key={`${tech.name}-${index}`}
+                  className="flex-shrink-0 mx-4 group"
+                >
+                  <div className="relative transform transition-all duration-300 hover:scale-110 select-none">
+                    <img 
+                      src={tech.icon} 
+                      alt={`${tech.name} logo`}
+                      className="w-12 h-12 mb-3"
+                      draggable={false}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
         <style jsx>{`
-          .scrollbar-hide::-webkit-scrollbar {
-            display: none;
+          @keyframes scroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
           }
 
-          .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+          .animate-scroll {
+            animation: scroll 5s linear infinite;
+            will-change: transform;
           }
         `}</style>
       </div>
@@ -194,4 +73,4 @@ const FullStackSlider: React.FC = () => {
   );
 };
 
-export default FullStackSlider;
+export default FullStackSlider;``
