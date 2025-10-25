@@ -3,9 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Download, ArrowDown, Code, Sparkles } from "lucide-react";
 import Image from "next/image";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useEffect, useState } from "react";
-import FullStackSlider from "./skills_slider";
 import CarouselGames from "./carousel";
 
 export function Hero() {
@@ -37,7 +35,7 @@ export function Hero() {
 
     <section
       id="home"
-      className="mt-[95px] sm:mt-0 relative flex items-center justify-center overflow-hidden  pb-8"
+      className="sm:mt-0 relative flex items-center justify-center overflow-hidden  pb-8"
       >
       <div className=" mt-25 container mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-6 py-0 md:py-0 lg:flex-row lg:gap-24 relative z-10">
         {/* Text Content */}
