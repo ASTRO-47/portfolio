@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { ExternalLink, Github, Star, Calendar, Eye, ChevronDown, X, Code2, Sparkles, CheckCircle2 } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
+import { ThreeDCardDemo } from "./project_card"
 
 const projects = [
   {
@@ -263,7 +264,7 @@ export function Projects() {
         {/* Header Section */}
         <div
           className={`mb-16 text-center transition-all duration-700 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-        >
+          >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
             <Star className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-primary">Featured Work</span>
@@ -288,16 +289,16 @@ export function Projects() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {displayedProjects.map((project, index) => (
             <Card
-              key={project.title}
-              className={`group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm transition-all duration-700 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-3 cursor-pointer ${
-                isVisible ? `animate-scale-in animation-delay-${(index + 1) * 150}` : "opacity-0"
-              } ${project.featured ? 'ring-1 ring-primary/20' : ''} ${
+            key={project.title}
+            className={`group relative overflow-hidden border-0 bg-card/50 backdrop-blur-sm transition-all duration-700 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-3 cursor-pointer ${
+              isVisible ? `animate-scale-in animation-delay-${(index + 1) * 150}` : "opacity-0"
+            } ${project.featured ? 'ring-1 ring-primary/20' : ''} ${
                 index >= 6 && showAll ? 'animate-fade-in-up' : ''
               }`}
               onMouseEnter={() => setHoveredProject(project.title)}
               onMouseLeave={() => setHoveredProject(null)}
               onClick={() => setSelectedProject(project)}
-            >
+              >
               {/* Featured Badge */}
               {project.featured && (
                 <div className="absolute top-4 left-4 z-20">
@@ -313,7 +314,7 @@ export function Projects() {
                 <Badge 
                   variant={project.status === "Completed" ? "default" : "secondary"}
                   className="backdrop-blur-sm"
-                >
+                  >
                   {project.status}
                 </Badge>
               </div>
@@ -328,7 +329,7 @@ export function Projects() {
                     alt={project.title}
                     fill
                     className="object-cover transition-all duration-700 group-hover:scale-110"
-                  />
+                    />
                   
                   {/* Hover overlay with actions */}
                   <div className="absolute inset-0 flex items-center justify-center gap-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -340,7 +341,7 @@ export function Projects() {
                         e.stopPropagation()
                       }}
                       asChild
-                    >
+                      >
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
                         <Github className="h-4 w-4 mr-2" />
                         Code
@@ -353,7 +354,7 @@ export function Projects() {
                         e.stopPropagation()
                       }}
                       asChild
-                    >
+                      >
                       <a href={project.demo} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="h-4 w-4 mr-2" />
                         Live Demo
@@ -398,9 +399,9 @@ export function Projects() {
                 <div className="flex flex-wrap gap-1.5">
                   {project.tags.slice(0, 4).map((tag) => (
                     <Badge
-                      key={tag}
-                      variant="secondary"
-                      className="text-xs font-medium"
+                    key={tag}
+                    variant="secondary"
+                    className="text-xs font-medium"
                     >
                       {tag}
                     </Badge>
@@ -424,7 +425,7 @@ export function Projects() {
                 size="lg"
                 onClick={() => setShowAll(!showAll)}
                 className="group px-8 py-4 rounded-full text-base font-medium hover:scale-105 transition-all duration-300"
-              >
+                >
                 {showAll ? (
                   <>
                     Show Less Projects
@@ -466,7 +467,7 @@ export function Projects() {
                   alt={selectedProject.title}
                   fill
                   className="object-cover"
-                />
+                  />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
                 
                 {/* Featured & Status Badges */}
@@ -480,7 +481,7 @@ export function Projects() {
                   <Badge 
                     variant={selectedProject.status === "Completed" ? "default" : "secondary"}
                     className="backdrop-blur-sm"
-                  >
+                    >
                     {selectedProject.status}
                   </Badge>
                 </div>
@@ -566,9 +567,9 @@ export function Projects() {
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.tags.map((tag) => (
                       <Badge
-                        key={tag}
-                        variant="secondary"
-                        className="text-sm font-medium"
+                      key={tag}
+                      variant="secondary"
+                      className="text-sm font-medium"
                       >
                         {tag}
                       </Badge>
@@ -598,6 +599,7 @@ export function Projects() {
           )}
         </DialogContent>
       </Dialog>
+<ThreeDCardDemo></ThreeDCardDemo>
     </section>
   )
 }

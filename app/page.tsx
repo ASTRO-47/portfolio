@@ -7,6 +7,7 @@ import { Navigation } from "@/components/navigation"
 import { AnimatedBackground } from "@/components/animated-background"
 import FullStackSlider from "@/components/skills_slider"
 import CarouselGames from "@/components/carousel"
+import { ThreeDCardDemo } from "@/components/project_card"
 export default function Home() {
   return (
     <div className="min-h-screen">
