@@ -286,6 +286,8 @@ export function Projects() {
         </div>
 
         {/* Projects Grid */}
+
+
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {displayedProjects.map((project, index) => (
             <Card
@@ -455,6 +457,7 @@ export function Projects() {
         </div>
       </div>
 
+
       {/* Project Detail Modal */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
@@ -599,6 +602,8 @@ export function Projects() {
           )}
         </DialogContent>
       </Dialog>
+
+      
 <ThreeDCardDemo></ThreeDCardDemo>
     </section>
   )
