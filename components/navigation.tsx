@@ -99,7 +99,7 @@ export function Navigation() {
         </div>
       </div>
 
-      <div
+      {/* <div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 z-50"
         role="progressbar"
         aria-valuemin={0}
@@ -110,7 +110,7 @@ export function Navigation() {
           className="h-full bg-gradient-to-r from-primary via-accent to-primary shadow-lg shadow-primary/50 transition-[width] duration-300"
           style={{ width: `${scrollProgress}%` }}
         />
-      </div>
+      </div> */}
 
       <nav
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-40 transition-all duration-500 ease-out ${

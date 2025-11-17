@@ -29,7 +29,7 @@ function CarouselGames() {
     { name: 'AWS', icon: '/icons/aws.svg', color: 'from-orange-500 to-orange-600' },
     { name: 'Azure', icon: '/icons/azure.svg', color: 'from-blue-400 to-blue-600' },
     { name: 'Tailwind', icon: '/icons/tailwindcss.svg', color: 'from-cyan-400 to-blue-500' },
-    { name: 'GitHub', icon: '/icons/github-dark.svg', color: 'from-gray-700 to-gray-900' },
+    // { name: 'GitHub', icon: '/icons/github-dark.svg', color: 'from-gray-700 to-gray-900' },
     { name: 'Postman', icon: '/icons/postman.svg', color: 'from-orange-500 to-orange-600' },
     { name: 'Vite', icon: '/icons/vitejs.svg', color: 'from-purple-500 to-yellow-500' },
     { name: 'Notion', icon: '/icons/notion.svg', color: 'from-gray-600 to-gray-800' },
