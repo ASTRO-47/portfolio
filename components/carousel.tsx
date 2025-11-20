@@ -57,7 +57,7 @@ function CarouselGames() {
                 >
                     {technologies.map((icon) =>{
                     return <SplideSlide>
-                        <img src={icon.icon} alt={icon.name} className='wi-48 h-30
+                        <img src={icon.icon} alt={icon.name} className='wi-48 h-20
                         hover:scale-120 duration-300
                         
                         ' />
