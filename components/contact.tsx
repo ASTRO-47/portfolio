@@ -112,7 +112,7 @@ export function Contact() {
             className={`mt-12 text-center transition-all duration-700 ${isVisible ? "animate-fade-in animation-delay-600" : "opacity-0"}`}
           >
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Made with ❤️. All rights reserved.
+              © {new Date().getFullYear()} All rights reserved.
             </p>
           </div>
         </div>

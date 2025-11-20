@@ -1,0 +1,11 @@
+
+services:
+  front:
+    build:
+      target: development
+    volumes:
+      - ./:/app
+    ports:
+      - "3000:3000"
+    # env_file:
+    #   ./services/chat-service/.env
