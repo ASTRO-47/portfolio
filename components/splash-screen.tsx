@@ -19,14 +19,7 @@ export function SplashScreen() {
   )[0]
 
   useEffect(() => {
-    // Check if user has visited before
-    const hasVisited = sessionStorage.getItem("hasVisited")
-    
-    if (hasVisited) {
-      setIsLoading(false)
-      return
-    }
-
+    // Always show splash screen on page load/refresh
     // Calculated timing: 21 chars × 60ms = 1260ms typing
     // Timeline: Name(0.4s) -> Title appears(1.6s) -> Typing starts(1.75s) -> Typing ends(3.01s) -> Exit(3.2s)
     const timers = [
@@ -35,7 +28,6 @@ export function SplashScreen() {
       setTimeout(() => setStep(3), 2800),  // Show particles at 2.8s
       setTimeout(() => {
         setIsLoading(false)
-        sessionStorage.setItem("hasVisited", "true")
       }, 3200) // Exit at 3.2s - right after typing completes
     ]
 
