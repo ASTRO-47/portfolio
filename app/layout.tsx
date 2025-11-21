@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   generator: "v0.app",
   keywords: ["Frontend Developer", "imad zaghba"," full statck", "React", "Next.js", "TypeScript", "Web Development", "Portfolio"],
   authors: [{ name: "Imad Ez-Zaghba" }],
+  icons: {
+    icon: "/astro_logo.png",
+    shortcut: "/astro_logo.png",
+    apple: "/astro_logo.png",
+  },
 }
 
 export default function RootLayout({

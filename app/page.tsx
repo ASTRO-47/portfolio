@@ -1,26 +1,26 @@
 import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
 import { Projects } from "@/components/projects"
-import { Resume } from "@/components/resume"
 import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
-import { AnimatedBackground } from "@/components/animated-background"
-import FullStackSlider from "@/components/skills_slider"
-import CarouselGames from "@/components/carousel"
-import { ThreeDCardDemo } from "@/components/project_card"
+import { HexagonBackground } from "@/components/animate-ui/components/backgrounds/hexagon"
+import AnimatedBackground_2 from "@/components/animatedback"
+
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      <AnimatedBackground />
-      <Navigation />
-      <main id="content" className="">
-        <Hero />
-        
-        <About />
-        <Projects />
-        {/* <Resume /> */}
-        <Contact />
-      </main>
+    <div className="relative min-h-screen">
+      <AnimatedBackground_2  />
+      <div className="relative z-10 pointer-events-none">
+        <div className="pointer-events-auto">
+          <Navigation />
+        </div>
+        <main id="content" className="relative pointer-events-auto">
+          <Hero />
+          <About />
+          <Projects />
+          <Contact />
+        </main>
+      </div>
     </div>
   )
 }

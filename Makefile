@@ -6,6 +6,7 @@ dev:
 # dev:
 # 	docker compose -f $(DOCKER_COMPOSE_BASE) -f $(DOCKER_COMPOSE_DEV) up --build
 
-down:  docker-compose -f $(DOCKER_COMPOSE_DEV) up
+down:
+	docker compose -f $(DOCKER_COMPOSE_DEV) down
 
 re: down dev

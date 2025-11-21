@@ -304,7 +304,7 @@ export function AnimatedBackground() {
         <div 
           className="absolute w-[500px] h-[500px] rounded-full blur-2xl transition-all duration-150 ease-out opacity-30 dark:opacity-35"
           style={{
-            background: theme === 'dark'
+            background: theme === 'dark'    
               ? "radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, rgba(59, 130, 246, 0.1) 40%, transparent 70%)"
               : "radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, rgba(59, 130, 246, 0.08) 40%, transparent 70%)",
             left: `${mousePos.x}px`,
