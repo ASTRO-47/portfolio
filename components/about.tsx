@@ -1,29 +1,30 @@
 "use client"
 
-import { Code2, Palette, Rocket, Users } from "lucide-react"
+import { Code2, Database, Globe, Server, Box, GitBranch } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
+import { Badge } from "@/components/ui/badge"
 
-const features = [
+const skillCategories = [
   {
     icon: Code2,
-    title: "Clean Code",
-    description: "Writing maintainable, scalable, and efficient code",
+    title: "Frontend",
+    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "JavaScript", "HTML/CSS"]
   },
   {
-    icon: Palette,
-    title: "Modern Design",
-    description: "Creating beautiful interfaces with attention to detail",
+    icon: Server,
+    title: "Backend",
+    skills: ["Node.js", "Express", "REST APIs", "Django", "Flask"]
   },
   {
-    icon: Rocket,
-    title: "Performance",
-    description: "Optimizing for speed and user experience",
+    icon: Database,
+    title: "Database",
+    skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis"]
   },
   {
-    icon: Users,
-    title: "Collaboration",
-    description: "Working effectively with teams and stakeholders",
-  },
+    icon: Box,
+    title: "DevOps & Tools",
+    skills: ["Docker", "Git", "Linux", "Nginx", "GitHub Actions"]
+  }
 ]
 
 export function About() {
@@ -49,48 +50,74 @@ export function About() {
 
   return (
     <section id="about" ref={sectionRef} className="py-8 md:py-12 relative">
-      <div className="container mx-auto max-w-7xl px-4">
+      <div className="container mx-auto max-w-7xl px-6">
         <div
           className={`mb-12 text-center transition-all duration-700 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
         >
-          <h2 className="mb-4 text-3xl font-bold text-foreground sm:text-4xl">About Me</h2>
-          <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
+          <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            About <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Me</span>
+          </h2>
+          <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-primary to-accent" />
         </div>
 
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-4xl">
           <p
-            className={`mb-6 text-pretty text-lg leading-relaxed text-muted-foreground transition-all duration-700 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}
+            className={`mb-6 text-center text-lg leading-relaxed text-muted-foreground transition-all duration-700 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}
           >
-            I'm a passionate frontend developer with a keen eye for design and a love for creating seamless user
-            experiences. With expertise in modern web technologies like React, Next.js, and Tailwind CSS, I bring ideas
-            to life through code.
+            I'm a full-stack developer with a passion for building modern web applications. From crafting intuitive user interfaces 
+            to architecting robust backend systems, I bring ideas to life through clean, efficient code. My experience spans across 
+            freelance projects, automation systems, and full-scale web applications.
           </p>
           <p
-            className={`mb-12 text-pretty text-lg leading-relaxed text-muted-foreground transition-all duration-700 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}
+            className={`mb-12 text-center text-lg leading-relaxed text-muted-foreground transition-all duration-700 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}
           >
-            When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or
-            sharing knowledge with the developer community. I believe in continuous learning and staying up-to-date with
-            the latest industry trends.
+            Educated at 1337 Coding School and trained in modern development practices, I'm constantly exploring new technologies 
+            and contributing to innovative projects. I believe in writing code that's not just functional, but maintainable and scalable.
           </p>
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            {features.map((feature, index) => {
-              const Icon = feature.icon
-              return (
+          {/* Skills Section */}
+          <div
+            className={`transition-all duration-700 ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}
+          >
+            <h3 className="mb-8 text-center text-2xl font-bold text-foreground">
+              Skills & <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Technologies</span>
+            </h3>
+            
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {skillCategories.map((category, index) => (
                 <div
-                  key={feature.title}
-                  className={`group rounded-xl border border-border bg-card p-6 transition-all duration-700 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 ${
-                    isVisible ? `animate-scale-in animation-delay-${(index + 3) * 100}` : "opacity-0"
+                  key={category.title}
+                  className={`group relative overflow-hidden rounded-xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-500 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 ${
+                    isVisible ? "animate-fade-in-up" : "opacity-0"
                   }`}
+                  style={{ animationDelay: `${(index + 4) * 100}ms` }}
                 >
-                  <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
-                    <Icon className="h-6 w-6" />
+                  {/* Gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  
+                  <div className="relative">
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="rounded-lg bg-primary/10 p-2 transition-colors group-hover:bg-primary/20">
+                        <category.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <h4 className="text-lg font-semibold text-foreground">{category.title}</h4>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill) => (
+                        <Badge 
+                          key={skill}
+                          variant="secondary"
+                          className="bg-background/80 text-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
-                  <h3 className="mb-2 text-xl font-semibold text-foreground">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
                 </div>
-              )
-            })}
+              ))}
+            </div>
           </div>
         </div>
       </div>

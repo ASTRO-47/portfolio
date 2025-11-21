@@ -3,6 +3,7 @@ import { About } from "@/components/about"
 import { Projects } from "@/components/projects"
 import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
+import { Experience } from "@/components/experience"
 import { HexagonBackground } from "@/components/animate-ui/components/backgrounds/hexagon"
 import AnimatedBackground_2 from "@/components/animatedback"
 
@@ -17,6 +18,7 @@ export default function Home() {
         <main id="content" className="relative pointer-events-auto">
           <Hero />
           <About />
+          <Experience />
           <Projects />
           <Contact />
         </main>
